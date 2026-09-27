@@ -1,0 +1,11 @@
+name: FiveUI
+version: '1.0-Alpha'
+main: com.github.drfiveminusmint.fiveUI.FiveUI
+api-version: '1.21'
+author: drfiveminusminus
+commands:
+  fiveui:
+    aliases:
+      - 5ui
+    description: Display FiveUI version
+    usage: /fiveui
