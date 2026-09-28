@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github.drfiveminusmint'
-version = 'alpha-1.0'
+version = 'alpha-1.0.1'
 
 repositories {
     mavenCentral()
