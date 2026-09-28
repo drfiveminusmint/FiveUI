@@ -20,15 +20,7 @@ public class FiveUICommand implements CommandExecutor {
             commandSender.sendMessage(Component.text("Only players can use this command!", NamedTextColor.RED));
             return true;
         }
-        // FiveUI.getInstance().getInfoUI().display(player);
-        // Text input test
-        TextInput textInput = new TextInput(Component.text("Data Entry Test"), player);
-        textInput.setElement(0, new StaticDisplay(new ItemStack(Material.STONE)));
-        textInput.setOnEntry((entryPlayer, entry) -> {
-            entryPlayer.sendMessage(Component.text((String) entry));
-            entryPlayer.closeInventory();
-        });
-        textInput.display(player);
+        FiveUI.getInstance().getInfoUI().display(player);
         return true;
     }
 }

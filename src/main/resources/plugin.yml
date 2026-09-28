@@ -1,5 +1,5 @@
 name: FiveUI
-version: '1.0-Alpha'
+version: 'Alpha-1.0'
 main: com.github.drfiveminusmint.fiveUI.FiveUI
 api-version: '1.21'
 author: drfiveminusminus
