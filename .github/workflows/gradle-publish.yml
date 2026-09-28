@@ -35,7 +35,7 @@ jobs:
     - name: Change wrapper permissions
       run: chmod +x ./gradlew
 
-    - name: Build with Gradles
+    - name: Build with Gradle
       run: ./gradlew build
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
