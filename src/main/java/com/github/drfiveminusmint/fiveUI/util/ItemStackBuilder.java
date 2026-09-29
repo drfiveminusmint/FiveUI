@@ -76,4 +76,14 @@ public class ItemStackBuilder {
         itemMeta.addEnchant(enchantment, level, true);
         return this;
     }
+
+    /**
+     * Overrides the item's enchantment glimmer.
+     * @param glimmer Whether the item should glimmer as if it is enchanted.
+     * @return the ItemStackBuilder.
+     */
+    public ItemStackBuilder setGlimmer(boolean glimmer) {
+        itemMeta.setEnchantmentGlintOverride(glimmer);
+        return this;
+    }
 }
