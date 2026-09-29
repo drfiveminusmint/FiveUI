@@ -15,11 +15,11 @@ public class DynamicButton implements ClickableElement, UpdatableElement {
     public DynamicButton(@NotNull ItemUpdateEffect effect) { updateEffect = effect; }
 
     @Override
-    public ItemStack getDisplayItem() {
+    public @NotNull ItemStack getDisplayItem() {
         return updateEffect.onItemUpdate();
     }
     @Override
-    public void onClick(Player player, ClickType type) {
+    public void onClick(@NotNull Player player, @NotNull ClickType type) {
         if (clickEffect != null)
             clickEffect.effect(player, this, type);
     }

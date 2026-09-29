@@ -46,7 +46,7 @@ public class TextInput implements PerPlayerContainer {
 
     @Override
     @Nullable
-    public UIElement setElement(int slot, UIElement element) {
+    public UIElement setElement(int slot, @Nullable UIElement element) {
         if (slot >= elements.size())
             throw new IndexOutOfBoundsException(String.format("Slot %d is invalid for TextInput GUIs"));
         inventoryView.setItem(slot, element.getDisplayItem());
@@ -54,17 +54,17 @@ public class TextInput implements PerPlayerContainer {
     }
 
     @Override
-    public Inventory getInventory() {
+    public @NotNull Inventory getInventory() {
         return inventoryView.getTopInventory();
     }
 
     @Override
-    public Player getPlayer() {
+    public @NotNull Player getPlayer() {
         return player;
     }
 
     @Override
-    public boolean display(Player player) {
+    public boolean display(@NotNull Player player) {
         if (player != this.player) {
             FiveUI.getInstance().getLogger().log(Level.SEVERE, "Attempted to open a TextInput for a player it was not associated with! All TextInputs must be opened by the player declared at construction.");
             return false;
@@ -82,12 +82,12 @@ public class TextInput implements PerPlayerContainer {
 
     // The method to run when the container is closed
     @Override
-    public void setOnClose(CloseEffect effect) {
+    public void setOnClose(@Nullable CloseEffect effect) {
         closeEffect = effect;
     }
 
     @Override
-    public void onClose(Player player) {
+    public void onClose(@NotNull Player player) {
         for (int i = 0; i < 3; i++)
             inventoryView.setItem(i, null);
         // prevent a resource leak here
@@ -96,11 +96,12 @@ public class TextInput implements PerPlayerContainer {
     }
 
     // The method to run when the "enter" item is clicked
-    public void onEntry(Player player, Object value) {
-        entryEffect.effect(player, value);
+    public void onEntry(@NotNull Player player, Object value) {
+        if (entryEffect != null)
+            entryEffect.effect(player, value);
     }
 
-    public void setOnEntry(EntryEffect onEntry) {
+    public void setOnEntry(@Nullable EntryEffect onEntry) {
         entryEffect = onEntry;
     }
 

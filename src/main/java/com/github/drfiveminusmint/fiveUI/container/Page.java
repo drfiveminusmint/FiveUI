@@ -21,7 +21,7 @@ public class Page implements Container {
     InventoryType inventoryType;
     CloseEffect closeEffect = null;
 
-    public Page(Component title, InventoryType type) {
+    public Page(@NotNull Component title, @NotNull InventoryType type) {
         // Create the inventory we'll be using to display this pane
         inventory = Bukkit.createInventory(null, type, title);
         inventoryType = type;
@@ -39,7 +39,7 @@ public class Page implements Container {
 
     @Override
     @Nullable
-    public UIElement setElement(int slot, UIElement element) {
+    public UIElement setElement(int slot, @Nullable UIElement element) {
         if (slot > inventory.getSize())
             throw new IndexOutOfBoundsException(String.format("Slot %d is invalid for inventories of type %s", slot, inventoryType.name()));
         if (element == null)
@@ -50,14 +50,14 @@ public class Page implements Container {
     }
 
     // Fills the entire pane with this element
-    public void fillElement(UIElement element) {
+    public void fillElement(@Nullable UIElement element) {
         for (int i = 0; i < inventory.getSize(); i++)
             setElement(i, element);
     }
 
     // display this pane to a player
     @Override
-    public boolean display(Player player) {
+    public boolean display(@NotNull Player player) {
         updateContents();
         player.openInventory(inventory);
         return false;
@@ -78,7 +78,7 @@ public class Page implements Container {
     }
 
     @Override
-    public Inventory getInventory() {return inventory;}
+    public @NotNull Inventory getInventory() {return inventory;}
 
     // set method to be run when the container is closed with the ESC key
     @Override
@@ -88,7 +88,7 @@ public class Page implements Container {
 
     // called when the container is closed
     @Override
-    public void onClose(Player player) {
+    public void onClose(@NotNull Player player) {
         if (closeEffect == null) return;
         closeEffect.effect(player, this);
     }

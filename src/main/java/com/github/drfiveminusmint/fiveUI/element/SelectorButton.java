@@ -4,18 +4,19 @@ import com.github.drfiveminusmint.fiveUI.effect.EntryEffect;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class SelectorButton implements ClickableElement, UpdatableElement {
     private int state;
     private final ItemStack[] states;
     private EntryEffect entryEffect;
 
-    public SelectorButton(ItemStack[] displayStates) {
+    public SelectorButton(@NotNull ItemStack[] displayStates) {
         states = displayStates;
     }
 
     @Override
-    public void onClick(Player player, ClickType type) {
+    public void onClick(@NotNull Player player, @NotNull ClickType type) {
         // left click advances state, right click reverses it
         if(type.isRightClick())
             state = (state-1) % states.length;
@@ -26,6 +27,7 @@ public class SelectorButton implements ClickableElement, UpdatableElement {
     }
 
     @Override
+    @NotNull
     public ItemStack getDisplayItem() { return states[state]; }
 
     public int getState() { return state; }

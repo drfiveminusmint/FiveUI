@@ -5,6 +5,7 @@ import com.github.drfiveminusmint.fiveUI.effect.CloseEffect;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ public class RadioButton implements ClickableElement, UpdatableElement {
         setItem = set;
     }
     @Override
-    public ItemStack getDisplayItem() { return isClicked ? setItem : unsetItem; }
+    public @NotNull ItemStack getDisplayItem() { return isClicked ? setItem : unsetItem; }
     @Override
-    public void onClick(Player player, ClickType type) {
+    public void onClick(@NotNull Player player, @NotNull ClickType type) {
         // set this button as the clicked option
         isClicked = true;
         for (RadioButton other : linked)
@@ -43,7 +44,7 @@ public class RadioButton implements ClickableElement, UpdatableElement {
     public void setOnReset (@Nullable ClickEffect effect) { onReset = effect; }
 
     // Establishes a two-way link between two radio buttons
-    public void link(RadioButton other) {
+    public void link(@NotNull RadioButton other) {
         linked.add(other);
         other.linked.add(this);
     }

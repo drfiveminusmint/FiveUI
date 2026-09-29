@@ -4,12 +4,13 @@ import com.github.drfiveminusmint.fiveUI.effect.ClickEffect;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class StaticButton implements ClickableElement {
     private final ItemStack displayItem;
     private ClickEffect clickEffect = new ClickEffect() {
         @Override
-        public void effect(Player player, ClickableElement element, ClickType type) {
+        public void effect(@NotNull Player player, @NotNull ClickableElement element, @NotNull ClickType type) {
             return;
         }
     };
@@ -17,9 +18,9 @@ public class StaticButton implements ClickableElement {
     public StaticButton(ItemStack displayItem) { this.displayItem = displayItem; }
 
     @Override
-    public ItemStack getDisplayItem() { return displayItem; }
+    public @NotNull ItemStack getDisplayItem() { return displayItem; }
     @Override
-    public void onClick(Player player, ClickType type) {
+    public void onClick(@NotNull Player player, @NotNull ClickType type) {
         clickEffect.effect(player, this, type);
     }
 

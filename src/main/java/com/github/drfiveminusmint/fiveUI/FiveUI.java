@@ -16,6 +16,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -50,13 +51,9 @@ public final class FiveUI extends JavaPlugin {
                 .name(Component.text(getPluginMeta().getName(), NamedTextColor.YELLOW))
                 .addLore(Component.text("Click to see version info!", NamedTextColor.AQUA))
                 .itemStack());
-        infoButton.setOnClick(new ClickEffect() {
-            @Override
-            public void effect(Player player, ClickableElement element, ClickType type) {
+        infoButton.setOnClick((player, element, type) ->
                 player.sendMessage(Component.text("FiveUI version ", NamedTextColor.AQUA)
-                        .append(Component.text(getPluginMeta().getVersion())));
-            }
-        });
+                .append(Component.text(getPluginMeta().getVersion()))));
         InfoUI.setElement(13, infoButton);
     }
 
