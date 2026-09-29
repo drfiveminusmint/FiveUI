@@ -1,18 +1,26 @@
+/*
+ * This file is part of FiveUI.
+ * FiveUI was created by DrFiveMinusMinus and is licensed under the Creative Commons 4.0 BY license.
+ * This essentially means you're allowed to do anything you want with it as long as you credit me as the author.
+ * See License.MD for full terms.
+ *
+ * Don't remove this notice from any copies of this file you receive.
+ */
 package com.github.drfiveminusmint.fiveUI;
 
 import com.github.drfiveminusmint.fiveUI.container.Container;
 import com.github.drfiveminusmint.fiveUI.container.PerPlayerContainer;
 import com.github.drfiveminusmint.fiveUI.container.TextInput;
 import com.github.drfiveminusmint.fiveUI.element.ClickableElement;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.view.AnvilView;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
 

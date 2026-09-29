@@ -1,5 +1,10 @@
 /*
- * Base Interface for all GUIs we can open
+ * This file is part of FiveUI.
+ * FiveUI was created by DrFiveMinusMinus and is licensed under the Creative Commons 4.0 BY license.
+ * This essentially means you're allowed to do anything you want with it as long as you credit me as the author.
+ * See License.MD for full terms.
+ *
+ * Don't remove this notice from any copies of this file you receive.
  */
 package com.github.drfiveminusmint.fiveUI.container;
 
@@ -10,19 +15,57 @@ import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Base interface for all GUIs we can open.
+ */
 public interface Container extends Iterable<UIElement> {
-    // add an element to the container
-    // returns the element that was previously in the UIElement's slot, if any
+    /**
+     * Add an element to the container.
+     * Implementations are not required to check whether the slot in question is out of bounds.
+     * @param slot the inventory to place the element in.
+     * @param element the UIElement to add to the GUI.
+     * @return the UIElement that was replaced, or null if none.
+     */
     @Nullable UIElement setElement(int slot, @Nullable UIElement element);
-    // gets the item currently in the specified slot;
+
+    /**
+     * Gets the item currently in the specified slot in this container's inventory.
+     * Implementations are not required to check whether the slot in question is out of bounds.
+     * @param slot the slot to look at within the Container's inventory.
+     * @return the UIElement at the specified slot, or null if none.
+     */
     @Nullable UIElement getElement(int slot);
-    // gets the inventory associated with this Container
+
+    /**
+     * Gets the inventory associated with this Container.
+     * @return the container's Inventory.
+     */
     @NotNull Inventory getInventory();
-    // display this container to a player
+
+    /**
+     * Displays this container to the player.
+     * Implementations should display the inventory associated with the container, along with all elements.
+     * @param player the player to display this Container to.
+     * @return true if the Container was successfully displayed, false otherwise.
+     */
     boolean display(@NotNull Player player);
-    // updates all updatable elements within this container
+
+    /**
+     * Redraws all GUI elements within this Container that can be updated, using UIElement.getDisplayItem().
+     * To declare itself updatable, an element should implement the UpdatableElement marker interface
+     * @see com.github.drfiveminusmint.fiveUI.element.UpdatableElement
+     */
     void updateContents();
-    // set method to be run when the container is closed with the ESC key
+
+    /**
+     * Sets the method to be run when this interface is closed.
+     * @param effect the new CloseEffect to run. If this is set to null, no additional code will be run when the interface closes.
+     */
     void setOnClose(@Nullable CloseEffect effect);
+    /**
+     * Sets the method to be run when this interface is closed.
+     * Implementations should invoke CloseEffect.effect() at some point in this method.
+     * @param player the player closing this interface. Implementations should pass this to the CloseEffect in some way.
+     */
     void onClose(@NotNull Player player);
 }
