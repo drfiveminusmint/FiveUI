@@ -33,6 +33,13 @@ public class Page implements Container {
     InventoryType inventoryType;
     CloseEffect closeEffect = null;
 
+    /**
+     * Create page with specified InventoryType.
+     * This cannot be used to create pages of different sizes, use Page(title, size) instead.
+     * @param title the title to display at the top of the window.
+     * @param type the InventoryType to display this Page with. Some specialized functions of this
+     *            inventory type will not be functional, see <a href="https://jd.papermc.io/paper/26.3/org/bukkit/Server.html#createInventory(org.bukkit.inventory.InventoryHolder,org.bukkit.event.inventory.InventoryType,net.kyori.adventure.text.Component)">Paper Docs</a>.
+     */
     public Page(@NotNull Component title, @NotNull InventoryType type) {
         // Create the inventory we'll be using to display this pane
         inventory = Bukkit.createInventory(null, type, title);
@@ -40,6 +47,29 @@ public class Page implements Container {
         elements = new Vector<>();
         elements.setSize(inventoryType.getDefaultSize());
         // Make this interface functional
+        FiveUI.getInstance().getUIManager().registerInterface(this);
+    }
+
+    /**
+     * Create default size page
+     * Same as Page(title, size = 27)
+     * @param title the title to display at the top of the window.
+     */
+    public Page(@NotNull Component title) {
+        this(title, InventoryType.CHEST);
+    }
+
+    /**
+     * Create variable size page
+     * Will always be InventoryType.Chest
+     * @param title the title to display at the top of the window.
+     * @param size the size of the page. This <u>must</u> be a multiple of 9.
+     */
+    public Page(@NotNull Component title, int size) {
+        inventory = Bukkit.createInventory(null, size, title);
+        inventoryType = InventoryType.CHEST;
+        elements = new Vector<>();
+        elements.setSize(size);
         FiveUI.getInstance().getUIManager().registerInterface(this);
     }
 
@@ -61,13 +91,15 @@ public class Page implements Container {
         return elements.set(slot, element);
     }
 
-    // Fills the entire pane with this element
+    /**
+     * Utility method to fill a page. Every available slot on this page will be filled with the specified element.
+     * @param element the element to fill the page with.
+     */
     public void fillElement(@Nullable UIElement element) {
         for (int i = 0; i < inventory.getSize(); i++)
             setElement(i, element);
     }
-
-    // display this pane to a player
+    
     @Override
     public boolean display(@NotNull Player player) {
         updateContents();
@@ -75,7 +107,6 @@ public class Page implements Container {
         return false;
     }
 
-    // update all updateable elements within this pane
     @Override
     public void updateContents() {
         for (int i = 0; i < inventory.getSize(); i++)
@@ -92,13 +123,11 @@ public class Page implements Container {
     @Override
     public @NotNull Inventory getInventory() {return inventory;}
 
-    // set method to be run when the container is closed with the ESC key
     @Override
     public void setOnClose(CloseEffect newEffect) {
         closeEffect = newEffect;
     }
 
-    // called when the container is closed
     @Override
     public void onClose(@NotNull Player player) {
         if (closeEffect == null) return;
