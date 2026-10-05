@@ -13,5 +13,5 @@ import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface EntryEffect {
-    public void effect(@NotNull Player player, Object entry);
+    void effect(@NotNull Player player, Object entry);
 }

@@ -14,5 +14,5 @@ import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface CloseEffect {
-    public void effect(@NotNull Player player, @NotNull Container container);
+    void effect(@NotNull Player player, @NotNull Container container);
 }
