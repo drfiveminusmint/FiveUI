@@ -15,6 +15,7 @@ import com.github.drfiveminusmint.fiveUI.element.UIElement;
 import com.github.drfiveminusmint.fiveUI.element.UpdatableElement;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.MenuType;
 import org.bukkit.inventory.view.AnvilView;
@@ -96,12 +97,12 @@ public class TextInput implements PerPlayerContainer {
     }
 
     @Override
-    public void onClose(@NotNull Player player) {
+    public void onClose(@NotNull Player player, InventoryCloseEvent.@NotNull Reason reason) {
         for (int i = 0; i < 3; i++)
             inventoryView.setItem(i, null);
         // prevent a resource leak here
         FiveUI.getInstance().getUIManager().unregisterInterface(this);
-        closeEffect.effect(player, this);
+        closeEffect.effect(player, this, reason);
     }
 
     /**

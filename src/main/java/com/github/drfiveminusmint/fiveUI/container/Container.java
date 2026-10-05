@@ -11,6 +11,7 @@ package com.github.drfiveminusmint.fiveUI.container;
 import com.github.drfiveminusmint.fiveUI.effect.CloseEffect;
 import com.github.drfiveminusmint.fiveUI.element.UIElement;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -66,6 +67,7 @@ public interface Container extends Iterable<UIElement> {
      * Sets the method to be run when this interface is closed.
      * Implementations should invoke CloseEffect.effect() at some point in this method.
      * @param player the player closing this interface. Implementations should pass this to the CloseEffect in some way.
+     * @param reason the reason this interface was closed. Implementations should pass this to CloseEffect in some way.
      */
-    void onClose(@NotNull Player player);
+    void onClose(@NotNull Player player, @NotNull InventoryCloseEvent.Reason reason);
 }

@@ -62,7 +62,7 @@ public class UIManager implements Listener {
                 closed = container;
                 break;
             }
-        if (closed != null) closed.onClose((Player) event.getPlayer());
+        if (closed != null) closed.onClose((Player) event.getPlayer(), event.getReason());
     }
 
     // Make sure items can't be withdrawn or added

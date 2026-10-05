@@ -10,9 +10,10 @@ package com.github.drfiveminusmint.fiveUI.effect;
 
 import com.github.drfiveminusmint.fiveUI.container.Container;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface CloseEffect {
-    void effect(@NotNull Player player, @NotNull Container container);
+    void effect(@NotNull Player player, @NotNull Container container, InventoryCloseEvent.Reason reason);
 }

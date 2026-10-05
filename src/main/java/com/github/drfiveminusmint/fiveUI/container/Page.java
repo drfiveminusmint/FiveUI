@@ -15,6 +15,7 @@ import com.github.drfiveminusmint.fiveUI.element.UpdatableElement;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
@@ -99,7 +100,7 @@ public class Page implements Container {
         for (int i = 0; i < inventory.getSize(); i++)
             setElement(i, element);
     }
-    
+
     @Override
     public boolean display(@NotNull Player player) {
         updateContents();
@@ -129,8 +130,8 @@ public class Page implements Container {
     }
 
     @Override
-    public void onClose(@NotNull Player player) {
+    public void onClose(@NotNull Player player, InventoryCloseEvent.@NotNull Reason reason) {
         if (closeEffect == null) return;
-        closeEffect.effect(player, this);
+        closeEffect.effect(player, this, reason);
     }
 }
