@@ -35,7 +35,7 @@ public class RadioButton implements ClickableElement, UpdatableElement {
         linked.add(this);
     }
     @Override
-    public @NotNull ItemStack getDisplayItem() { return isClicked ? setItem : unsetItem; }
+    public @Nullable ItemStack getDisplayItem() { return isClicked ? setItem : unsetItem; }
     @Override
     public void onClick(@NotNull Player player, @NotNull ClickType type) {
         // set this button as the clicked option
@@ -64,6 +64,18 @@ public class RadioButton implements ClickableElement, UpdatableElement {
         if (onReset != null && isClicked)
             onReset.effect(player, this, type);
         isClicked = false;
+    }
+
+    /**
+     * Set this button as the clicked button in the group.
+     * This will <u>ignore</u> both onClick and onReset for all buttons if they have been set!
+     */
+    public void setClicked() {
+        // set this button as the clicked option
+        isClicked = true;
+        for (RadioButton other : linked)
+            if (other != this)
+                other.isClicked = false;
     }
 
     /**

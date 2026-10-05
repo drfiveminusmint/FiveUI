@@ -10,6 +10,7 @@ package com.github.drfiveminusmint.fiveUI.effect;
 
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This functional interface is used to provide effects that trigger when an element is redrawn in a GUI.
@@ -22,6 +23,6 @@ public interface ItemUpdateEffect {
      * This method is run when the item's appearance is updated.
      * @return the new ItemStack to display.
      */
-    @NotNull
+    @Nullable
     ItemStack onItemUpdate();
 }

@@ -11,6 +11,7 @@ package com.github.drfiveminusmint.fiveUI.element;
 import com.github.drfiveminusmint.fiveUI.effect.ItemUpdateEffect;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A DynamicDisplay is a display element (not clickable) that can be redrawn with an ItemUpdateEffect.
@@ -18,12 +19,12 @@ import org.jetbrains.annotations.NotNull;
 public class DynamicDisplay implements UpdatableElement {
     ItemUpdateEffect updateEffect;
 
-    DynamicDisplay(@NotNull ItemUpdateEffect effect) {
+    public DynamicDisplay(@NotNull ItemUpdateEffect effect) {
         updateEffect = effect;
     }
 
     @Override
-    public @NotNull ItemStack getDisplayItem() {
+    public @Nullable ItemStack getDisplayItem() {
         return updateEffect.onItemUpdate();
     }
 }

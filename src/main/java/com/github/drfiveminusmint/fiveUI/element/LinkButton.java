@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A LinkButton specifies a Container to be opened when it is clicked.
@@ -22,13 +23,13 @@ public class LinkButton implements ClickableElement {
 
     private final ItemStack displayItem;
     private final Container link;
-    public LinkButton(@NotNull ItemStack displayItem, @NotNull Container link) {
+    public LinkButton(@Nullable ItemStack displayItem, @NotNull Container link) {
         this.displayItem = displayItem;
         this.link = link;
     }
 
     @Override
-    public @NotNull ItemStack getDisplayItem() { return displayItem; }
+    public @Nullable ItemStack getDisplayItem() { return displayItem; }
 
     /**
      * On click, a LinkButton opens the specified linked Container.

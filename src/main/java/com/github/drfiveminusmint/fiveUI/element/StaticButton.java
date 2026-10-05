@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * The simplest type of button. Has only one state and will not be redrawn when Container.updateContents() is called.
@@ -24,7 +25,7 @@ public class StaticButton implements ClickableElement {
     public StaticButton(ItemStack displayItem) { this.displayItem = displayItem; }
 
     @Override
-    public @NotNull ItemStack getDisplayItem() { return displayItem; }
+    public @Nullable ItemStack getDisplayItem() { return displayItem; }
     @Override
     public void onClick(@NotNull Player player, @NotNull ClickType type) {
         clickEffect.effect(player, this, type);

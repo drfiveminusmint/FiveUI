@@ -26,7 +26,7 @@ public class DynamicButton implements ClickableElement, UpdatableElement {
     public DynamicButton(@NotNull ItemUpdateEffect effect) { updateEffect = effect; }
 
     @Override
-    public @NotNull ItemStack getDisplayItem() {
+    public @Nullable ItemStack getDisplayItem() {
         return updateEffect.onItemUpdate();
     }
     @Override

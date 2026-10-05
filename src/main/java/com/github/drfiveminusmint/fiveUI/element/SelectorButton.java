@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 public class SelectorButton implements ClickableElement, UpdatableElement {
     private int state;
     private final ItemStack[] states;
-    private EntryEffect entryEffect;
+    private EntryEffect entryEffect = ((player, entry) -> {});
 
     public SelectorButton(@NotNull ItemStack[] displayStates) {
         states = displayStates;
@@ -44,6 +44,16 @@ public class SelectorButton implements ClickableElement, UpdatableElement {
     public ItemStack getDisplayItem() { return states[state]; }
 
     public int getState() { return state; }
+
+    /**
+     * Set the state of this button. Container.updateContents will not automatically run; it must be run manually to redraw the element.
+     * @param newState the new state. If this is out of bounds, an IndexOutOfBoundsException will be thrown.
+     */
+    public void setState(int newState) {
+        if (newState >= states.length)
+            throw new IndexOutOfBoundsException(newState);
+        state = newState;
+    }
 
     /**
      * Set the effect to run when the button's state changes.
