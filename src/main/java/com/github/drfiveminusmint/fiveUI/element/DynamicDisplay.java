@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  * A DynamicDisplay is a display element (not clickable) that can be redrawn with an ItemUpdateEffect.
  */
 public class DynamicDisplay implements UpdatableElement {
-    ItemUpdateEffect updateEffect;
+    private ItemUpdateEffect updateEffect;
 
     public DynamicDisplay(@NotNull ItemUpdateEffect effect) {
         updateEffect = effect;
